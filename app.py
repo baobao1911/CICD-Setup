@@ -1,18 +1,16 @@
 from fastapi import FastAPI
-import mangum
 import uvicorn
 
 app = FastAPI()
-# comment
+
 @app.get("/")
-def read_root():
-    return {"Hello": "Digital Team"}
+async def root():
+    return {"message": "Hello World"}
 
-@app.get("/jenkins")
-def read_root():
-    return {"Hello": "Venkatesh Team"}
+@app.post("/Chat") # A decorator to create a route for the predict endpoint
+async def predict():
+    return {"Bot": "Fuck"}
 
-handler = mangum.Mangum(app)
 
 if __name__ == "__main__":
-   uvicorn.run(app, host="0.0.0.0", port=8080)
+   uvicorn.run(app, host="localhost", port=8009)
